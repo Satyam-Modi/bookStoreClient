@@ -8,6 +8,8 @@ import About from "./components/About";
 import BookDetail from "./components/Book/BookDetail";
 
 function App() {
+
+  console.log(process.env)
   return (
   <React.Fragment>
     <header>

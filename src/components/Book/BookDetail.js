@@ -11,12 +11,12 @@ const BookDetail = () => {
     const history = useNavigate();
     useEffect(() => {
         const fetchHandler = async () => {
-            await axios.get(`http://localhost:5000/books/${id}`).then(res => res.data).then(data => setInputs(data));
+            await axios.get(process.env.REACT_APP_BACKEND_URL + `/books/${id}`).then(res => res.data).then(data => setInputs(data));
         };
         fetchHandler();//.then((data) => setInputs(data.book));
     }, [id]);
     const sendRequest = async() => {
-        await axios.put(`http://localhost:5000/books/${id}`, {
+        await axios.put(process.env.REACT_APP_BACKEND_URL + `/books/${id}`, {
             name: String(inputs.name),
             author: String(inputs.author),
             description: String(inputs.description),
