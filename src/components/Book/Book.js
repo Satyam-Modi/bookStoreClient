@@ -6,9 +6,9 @@ import "./Book.css";
 const Book = (props) => {
 
   const URL = process.env.REACT_APP_BACKEND_URL + "/books";
-  const fetchHandler = async () => {
-      return await axios.get(URL).then((res) => res.data);
-  };
+  // const fetchHandler = async () => {
+  //     return await axios.get(URL).then((res) => res.data);
+  // };
   const history = useNavigate();
   const { _id, name, author, description, price, image} = props.book;
   // const {setBooks} = props;
