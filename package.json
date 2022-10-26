@@ -19,7 +19,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "set REACT_APP_BACKEND_URL=https://probook010.herokuapp.com&& react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

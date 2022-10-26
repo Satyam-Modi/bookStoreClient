@@ -11,11 +11,11 @@ const BookDetail = () => {
     const history = useNavigate();
     useEffect(() => {
         const fetchHandler = async () => {
-            await axios.get(process.env.REACT_APP_BACKEND_URL + `/books/${id}`).then(res => res.data).then(data => setInputs(data));
+            await axios.get(process.env.REACT_APP_BACKEND_URL + `/books/${id}`).then(res => res.data).then(data => {setInputs(data.book)});
         };
         fetchHandler();//.then((data) => setInputs(data.book));
     }, [id]);
-    const sendRequest = async() => {
+    const sendRequest = async () => {
         await axios.put(process.env.REACT_APP_BACKEND_URL + `/books/${id}`, {
             name: String(inputs.name),
             author: String(inputs.author),
@@ -35,29 +35,29 @@ const BookDetail = () => {
             [e.target.name]: e.target.value,
         }));
     };
-  return (
-    <div>
-        {inputs && (
+    return (
+        <div>
+            {inputs && (
 
-        <form onSubmit={handleSubmit}>
-            <Box display = "flex" flexDirection="column" justifyContent={"center"} maxWidth={700} alignContent={"center"} alignSelf="center" 
-            marginLeft={"auto"} marginRight={"auto"} marginTop={10} >
-            <FormLabel>Name</FormLabel>
-            <TextField value={inputs.name} onChange={handleChange} margin="normal" fullWidth variant="outlined" name="name" />
-            <FormLabel>Author</FormLabel>
-            <TextField value={inputs.author} onChange={handleChange} margin="normal" fullWidth variant="outlined" name="author" />
-            <FormLabel>Description</FormLabel>
-            <TextField value={inputs.description} onChange={handleChange} margin="normal" fullWidth variant="outlined" name="description" />
-            <FormLabel>Price</FormLabel>
-            <TextField value={inputs.price} onChange={handleChange} type="number" margin="normal" fullWidth variant="outlined" name="price" />
-            <FormLabel>Image</FormLabel>
-            <TextField value={inputs.image} onChange={handleChange} margin="normal" fullWidth variant="outlined" name="image" />
-            <FormControlLabel control={<Checkbox checked={checked} onChange={()=>setChecked(!checked)} />} label="Available" />
-            <Button variant="contained" type="submit">Update Book</Button>
-            </Box>
-        </form> ) }
-    </div>
-  );
+                <form onSubmit={handleSubmit}>
+                    <Box display="flex" flexDirection="column" justifyContent={"center"} maxWidth={700} alignContent={"center"} alignSelf="center"
+                        marginLeft={"auto"} marginRight={"auto"} marginTop={10} >
+                        <FormLabel>Name</FormLabel>
+                        <TextField value={inputs.name} onChange={handleChange} margin="normal" fullWidth variant="outlined" name="name" />
+                        <FormLabel>Author</FormLabel>
+                        <TextField value={inputs.author} onChange={handleChange} margin="normal" fullWidth variant="outlined" name="author" />
+                        <FormLabel>Description</FormLabel>
+                        <TextField value={inputs.description} onChange={handleChange} margin="normal" fullWidth variant="outlined" name="description" />
+                        <FormLabel>Price</FormLabel>
+                        <TextField value={inputs.price} onChange={handleChange} type="number" margin="normal" fullWidth variant="outlined" name="price" />
+                        <FormLabel>Image</FormLabel>
+                        <TextField value={inputs.image} onChange={handleChange} margin="normal" fullWidth variant="outlined" name="image" />
+                        <FormControlLabel control={<Checkbox checked={checked} onChange={() => setChecked(!checked)} />} label="Available" />
+                        <Button variant="contained" type="submit">Update Book</Button>
+                    </Box>
+                </form>)}
+        </div>
+    );
 };
 
 export default BookDetail;
